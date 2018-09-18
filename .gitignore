@@ -2,3 +2,5 @@
 *.tsv
 *.dta
 *.attr
+data/
+result/
