@@ -73,7 +73,7 @@ converted_train_data="$result_path"/"$data_name"_train.dta
 converted_test_data="$result_path"/"$data_name"_test.dta
 all_attr="$result_path"/"$data_name"_train.attr
 
-######### model training and prediction for different alpha
+######### model training and prediction for different alpha,mu
 
 cat "$alphas"|      #read alphas.txt
 while read alpha
@@ -111,6 +111,7 @@ do
 
 	done
 done
+rm temp.attr
 
 
 ######## postprocess

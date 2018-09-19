@@ -21,7 +21,11 @@ def generate_unused(train,test,response_name,folder):
 
 	txtfile1=folder+"/preprocess_unused.txt"
 	txtfile2=folder+"/trueY.txt"
-	pd.read_csv(test,sep="\t")[response_name].to_csv(txtfile2, index=False)
+	txtfile3=folder+"/keyword.txt"
+	test=pd.read_csv(test,sep="\t")
+	test[response_name].to_csv(txtfile2, index=False)
+	test["keyword"].to_csv(txtfile3, index=False)
+
 	with open(txtfile1, "w") as output:
 		writer = csv.writer(output, lineterminator='\n',escapechar=' ',quoting=csv.QUOTE_NONE)
 		for val in unused:
