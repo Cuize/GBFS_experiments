@@ -86,15 +86,13 @@ do
 	      
 	do
 		"$GBFS" -t "$converted_train_data" -v "$converted_test_data" -r "$all_attr" -mu "$mu" -a "$alpha" -k -1
-
+		mv preds.txt "$result_path"/GBFS_mu"$mu"_preds_alpha"$alpha".txt
+		mv boosting_rms.txt "$result_path"/boosting_rms_GBFS_mu"$mu"_alpha"$alpha".txt
+		mv log.txt "$result_path"/log_GBFS_mu"$mu"_alpha"$alpha".txt
+		rm "$data_name"_train.fs.attr
 		if (( $(echo "$mu > 0.0" |bc -l) )); then
-			mv preds.txt "$result_path"/GBFS_mu"$mu"_preds_alpha"$alpha".txt
 			mv feature_scores.txt "$result_path"/feature_scores_GBFS_mu"$mu"_alpha"$alpha".txt
-			mv boosting_rms.txt "$result_path"/boosting_rms_GBFS_mu"$mu"_alpha"$alpha".txt
-			mv log.txt "$result_path"/log_GBFS_mu"$mu"_alpha"$alpha".txt
-			rm "$data_name"_train.fs.attr
 		else
-			rm preds.txt boosting_rms.txt log.txt "$data_name"_train.fs.attr
 			mv feature_scores.txt "$result_path"/feature_scores_GBDT_alpha"$alpha".txt
 			rank_all="$result_path"/feature_scores_GBDT_alpha"$alpha".txt
 
