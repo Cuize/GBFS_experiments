@@ -42,10 +42,10 @@ topks=$2
 alphas=$3
 data_name=$4
 response_name=$5
-train_data_ext=/data/"$data_name"_train.tsv
-test_data_ext=/data/"$data_name"_test.tsv
-train_data=/data/"$data_name"_train
-test_data=/data/"$data_name"_test
+train_data_ext=data/"$data_name"_train.tsv
+test_data_ext=data/"$data_name"_test.tsv
+train_data=data/"$data_name"_train
+test_data=data/"$data_name"_test
 
 mkdir result/"$data_name"
 
