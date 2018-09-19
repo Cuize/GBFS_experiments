@@ -42,10 +42,10 @@ topks=$2
 alphas=$3
 data_name=$4
 response_name=$5
-train_data_ext=/data/"$data_name"_train.tsv
-test_data_ext=/data/"$data_name"_test.tsv
-train_data=/data/"$data_name"_train
-test_data=/data/"$data_name"_test
+train_data_ext=data/"$data_name"_train.tsv
+test_data_ext=data/"$data_name"_test.tsv
+train_data=data/"$data_name"_train
+test_data=data/"$data_name"_test
 
 mkdir result/"$data_name"
 
@@ -65,11 +65,13 @@ python preprocess.py "$train_data_ext" "$test_data_ext" "$response_name" "$resul
 bash "$convert" "$train_data" "$response_name" "$result_path"/preprocess_unused.txt 
 bash "$convert" "$test_data" "$response_name" "$result_path"/preprocess_unused.txt
 rm "$test_data".attr
-mv "$train_data".dta "$train_data".attr "$test_data".dta "$result_path"/
+mv "$train_data".dta "$result_path"/"$data_name"_train.dta 
+mv "$train_data".attr "$result_path"/"$data_name"_train.attr
+mv "$test_data".dta "$result_path"/"$data_name"_test.dta
 #now $train_data.dta, $train_data.attr and $test_data.dta are in "$result_path" folder
-converted_train_data="$result_path"/"$train_data".dta
-converted_test_data="$result_path"/"$test_data".dta
-all_attr="$result_path"/"$train_data".attr
+converted_train_data="$result_path"/"$data_name"_train.dta 
+converted_test_data="$result_path"/"$data_name"_test.dta
+all_attr="$result_path"/"$data_name"_train.attr
 
 ######### model training and prediction for different alpha
 
@@ -90,9 +92,9 @@ do
 			mv feature_scores.txt "$result_path"/feature_scores_GBFS_mu"$mu"_alpha"$alpha".txt
 			mv boosting_rms.txt "$result_path"/boosting_rms_GBFS_mu"$mu"_alpha"$alpha".txt
 			mv log.txt "$result_path"/log_GBFS_mu"$mu"_alpha"$alpha".txt
-			rm "$train_data".fs.attr
+			rm "$data_name"_train.fs.attr
 		else
-			rm preds.txt boosting_rms.txt log.txt "$train_data".fs.attr
+			rm preds.txt boosting_rms.txt log.txt "$data_name"_train.fs.attr
 			mv feature_scores.txt "$result_path"/feature_scores_GBDT_alpha"$alpha".txt
 			rank_all="$result_path"/feature_scores_GBDT_alpha"$alpha".txt
 
