@@ -4,3 +4,4 @@
 *.attr
 data/
 result/
+*.out
