@@ -24,10 +24,10 @@ def generate_unused(train,test,response_name,folder):
 	txtfile3=folder+"/keyword.txt"
 	test=pd.read_csv(test,sep="\t")
 	test[response_name].to_csv(txtfile2, index=False)
-        try:
-	    test["keyword"].to_csv(txtfile3, index=False)
-        except:
-            print("not query-asin-like dataset,no keywords given")
+	try:
+		test["keyword"].to_csv(txtfile3, index=False)
+	except:
+		print("not query-asin-like dataset,no keywords given")
 	with open(txtfile1, "w") as output:
 		writer = csv.writer(output, lineterminator='\n',escapechar=' ',quoting=csv.QUOTE_NONE)
 		for val in unused:
