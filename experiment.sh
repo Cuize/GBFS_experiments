@@ -99,8 +99,8 @@ do
 			cat "$topks"|    #read topks.txt
 			while read topk
 			do
-				python generate_topk.py "$rank_all" "$all_attr" "$topk"    #output temperary .attr file called temp.attr
-				"$GBFS" -t "$converted_train_data" -v "$converted_test_data" -r temp.attr -a "$alpha"
+				python generate_topk.py "$rank_all" "$all_attr" "$topk" "$data_name"    #output temperary .attr file called "$data_name"_temp.attr
+				"$GBFS" -t "$converted_train_data" -v "$converted_test_data" -r "$data_name"_temp.attr -a "$alpha"
 				mv preds.txt "$result_path"/GBFSt"$topk"_mu"$mu"_preds_alpha"$alpha".txt
 				mv boosting_rms.txt "$result_path"/boosting_rms_GBFSt"$topk"_mu"$mu"_alpha"$alpha".txt
 				mv log.txt "$result_path"/log_GBFSt"$topk"_mu"$mu"_alpha"$alpha".txt
@@ -111,7 +111,7 @@ do
 
 	done
 done
-rm temp.attr
+rm "$data_name"_temp.attr
 
 
 ######## postprocess
