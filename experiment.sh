@@ -51,7 +51,7 @@ mkdir result/"$data_name"
 
 result_path=result/"$data_name"
 
-convert=/home/cuize/Desktop/experiment/ag_scripts-master/General/tsv_to_dta.sh
+convert=/home/cuize/Desktop/experiment/ag_scripts/General/tsv_to_dta.sh
 
 GBFS=/home/cuize/Desktop/experiment/TreeExtra/Bin/gbt_train
 
