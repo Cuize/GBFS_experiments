@@ -8,6 +8,7 @@ def generate_unused(train,test,response_name,folder):
 	file_names=listdir(folder)
 	if "allfeature.txt" in file_names:
 		allfeature=set(pd.read_csv(folder+"/allfeature.txt",header=None)[0])
+		allfeature=set(str(x) for x in allfeature)
 	else:
 		allfeature=None
 	unused=[]
