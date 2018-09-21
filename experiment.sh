@@ -47,7 +47,7 @@ test_data_ext=data/"$data_name"_test.tsv
 train_data=data/"$data_name"_train
 test_data=data/"$data_name"_test
 
-mkdir result/"$data_name"
+mkdir -p result/"$data_name"
 
 result_path=result/"$data_name"
 
