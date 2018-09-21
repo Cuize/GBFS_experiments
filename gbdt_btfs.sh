@@ -34,9 +34,9 @@ converted_train_data="$result_path"/"$data_name"_train.dta
 converted_test_data="$result_path"/"$data_name"_test.dta
 all_attr="$result_path"/"$data_name"_train.attr
 
-GBFS=/home/cuize/Desktop/experiment/TreeExtra/Bin/gbt_train
+GBFS=../TreeExtra/Bin/gbt_train
 
-BT=/home/cuize/Desktop/experiment/TreeExtra/Bin/bt_train
+BT=../TreeExtra/Bin/bt_train
 
 
 ######### model training and prediction for different alpha,mu
