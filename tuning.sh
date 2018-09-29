@@ -50,7 +50,7 @@ all_attr="$result_path"/"$data_name"_train_train.attr
 ######### model training and prediction for different alpha,mu,shrinkage,iteration
 touch "$result_path"/tuning.txt
 output="$result_path"/tuning.txt
-echo name mu shrinkage alpha iteration number_of_features RMSE >> "$output"
+echo name mu shrinkage alpha iteration number_of_features RMSE time>> "$output"
 
 cat "$alphas"|
 while read alpha
@@ -59,10 +59,12 @@ do
 	while read mu
 	do
 		if (( $(echo "$mu == 0.0" |bc -l) )); then  #GBDTBTt
+			SECONDS=0
 			"$BT" -t "$converted_train_data" -v "$converted_validate_data" -r "$all_attr" -a "$alpha" -k -1
 			rm preds.txt model.bin bagging_rms.txt "$data_name"_train_train.fs.attr log.txt
 			mv feature_scores.txt "$result_path"/feature_scores_BT_alpha"$alpha".txt
 			rank_all="$result_path"/feature_scores_BT_alpha"$alpha".txt
+
 		fi
 		cat "$shrinks"|
 		while read shrink
@@ -71,11 +73,14 @@ do
 			while read iterN
 			do
 				if (( $(echo "$mu >= 1.0" |bc -l) )); then  #GBFS
+					SECONDS=0
 					name=GBFS_model
 					"$GBFS" -t "$converted_train_data" -v "$converted_validate_data" -r "$all_attr" -mu "$mu" -sh "$shrink" -a "$alpha" -n "$iterN" -k -1
 					attrn="$(head -1 feature_scores.txt| cut -c  26-)"
 					rms="$(tail -1 boosting_rms.txt)"
+
 				elif (( $(echo "$mu > 0.0" |bc -l) )); then # GBFS_adapt
+					SECONDS=0
 					name=GBFS_adapt_model
 					"$GBFS_adapt" -t "$converted_train_data" -v "$converted_validate_data" -r "$all_attr" -mu "$mu" -sh "$shrink" -a "$alpha" -n "$iterN" -k -1
 					attrn="$(head -1 feature_scores.txt| cut -c  26-)"
@@ -87,7 +92,7 @@ do
 					attrn="$(head -1 feature_scores.txt| cut -c  26-)"
 					rms="$(tail -1 boosting_rms.txt)"
 				fi
-				echo "$name" "$mu" "$shrink" "$alpha" "$iterN" "$attrn" "$rms" >> "$output"
+				echo "$name" "$mu" "$shrink" "$alpha" "$iterN" "$attrn" "$rms" "$SECONDS">> "$output"
 			done
 		done
 	done
