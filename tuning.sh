@@ -1,6 +1,6 @@
 #############################################
 # tuning.sh:
-#  input: mus.txt(1) shrinkage.txt(2) alphas.txt(3) iterNs.txt(4) data_name(5) topk(6)
+#  input: mus.txt(1) shrinkage.txt(2) alphas.txt(3) iterNs.txt(4) data_name(5) response_name(6) topk(7)
 #  output: tuning.txt store parameter and rmse each line
 #############################
 
@@ -10,7 +10,8 @@ shrinks=$2
 alphas=$3
 iterNs=$4
 data_name=$5
-topk=$6
+response_name=$6
+topk=$7
 train_data_ext=data/"$data_name"_train_train.tsv
 validate_data_ext=data/"$data_name"_train_validate.tsv
 train_data=data/"$data_name"_train_train
