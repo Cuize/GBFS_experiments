@@ -27,7 +27,7 @@ BT=/home/cuize/Desktop/experiment/TreeExtra/Bin/bt_train
 
 GBFS=/home/cuize/Desktop/experiment/TreeExtra/Bin/gbt_train
 
-GBFS_adapt=/home/cuize/Desktop/experiment/TreeExtra-adaptive/Bin/gbt_train
+GBFS_adapt=/home/cuize/Desktop/experiment/TreeExtra_adaptive/Bin/gbt_train
 
 ######## preprocess
 
@@ -51,7 +51,7 @@ all_attr="$result_path"/"$data_name"_train_train.attr
 touch "$result_path"/tuning.txt
 output="$result_path"/tuning.txt
 echo name mu shrinkage alpha iteration number_of_features RMSE time>> "$output"
-
+SECONDS=0
 cat "$alphas"|
 while read alpha
 do
@@ -59,7 +59,6 @@ do
 	while read mu
 	do
 		if (( $(echo "$mu == 0.0" |bc -l) )); then  #GBDTBTt
-			SECONDS=0
 			"$BT" -t "$converted_train_data" -v "$converted_validate_data" -r "$all_attr" -a "$alpha" -k -1
 			rm preds.txt model.bin bagging_rms.txt "$data_name"_train_train.fs.attr log.txt
 			mv feature_scores.txt "$result_path"/feature_scores_BT_alpha"$alpha".txt
@@ -73,14 +72,12 @@ do
 			while read iterN
 			do
 				if (( $(echo "$mu >= 1.0" |bc -l) )); then  #GBFS
-					SECONDS=0
 					name=GBFS_model
 					"$GBFS" -t "$converted_train_data" -v "$converted_validate_data" -r "$all_attr" -mu "$mu" -sh "$shrink" -a "$alpha" -n "$iterN" -k -1
 					attrn="$(head -1 feature_scores.txt| cut -c  26-)"
 					rms="$(tail -1 boosting_rms.txt)"
 
 				elif (( $(echo "$mu > 0.0" |bc -l) )); then # GBFS_adapt
-					SECONDS=0
 					name=GBFS_adapt_model
 					"$GBFS_adapt" -t "$converted_train_data" -v "$converted_validate_data" -r "$all_attr" -mu "$mu" -sh "$shrink" -a "$alpha" -n "$iterN" -k -1
 					attrn="$(head -1 feature_scores.txt| cut -c  26-)"

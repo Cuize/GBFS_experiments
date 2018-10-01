@@ -1,6 +1,6 @@
 ###################
 # generate models with tuned parameters
-## input: tuned.txt(1) data_name(2) response_name(3)
+## input: tuned.txt(1) data_name(2) response_name(3) topk(4)
 ## output: preds.txt boosting_rmse.txt for different tuned parameters
 
 
@@ -8,6 +8,7 @@
 par=$1
 data_name=$2
 response_name=$3
+topk=$4
 train_data_ext=data/"$data_name"_train.tsv
 test_data_ext=data/"$data_name"_test.tsv
 train_data=data/"$data_name"_train
@@ -23,7 +24,7 @@ BT=/home/cuize/Desktop/experiment/TreeExtra/Bin/bt_train
 
 GBFS=/home/cuize/Desktop/experiment/TreeExtra/Bin/gbt_train
 
-GBFS_adapt=/home/cuize/Desktop/experiment/TreeExtra-adaptive/Bin/gbt_train
+GBFS_adapt=/home/cuize/Desktop/experiment/TreeExtra_adaptive/Bin/gbt_train
 
 
 
@@ -56,7 +57,7 @@ do
 	mu="$( echo "$pars" |cut -f 1 -d" " )"
 	shrink="$( echo "$pars"|cut -f 2 -d" " )"
 	alpha="$( echo "$pars"|cut -f 3 -d" "  )"
-	itern="$( echo "$pars"|cut -f 4 -d" " )"
+	iterN="$( echo "$pars"|cut -f 4 -d" " )"
 	if (( $(echo "$mu >= 1.0" |bc -l) )); then  #GBFS
 		SECONDS=0
 		name=GBFS_model
@@ -82,7 +83,8 @@ do
 		rms="$(tail -1 boosting_rms.txt)"
 	fi
 	echo "$name" "$mu" "$shrink" "$alpha" "$iterN" "$attrn" "$rms" "$SECONDS">> "$output"
-	mv preds.txt "$result_path"/"$name"_preds_mu"$mu"_alpha"$alpha"_shrink"$shrink"_itern"$itern"_attrn"$attrn"_rms"$rms".txt
+	mv preds.txt "$result_path"/"$name"_preds_mu"$mu"_alpha"$alpha"_shrink"$shrink"_itern"$iterN"_attrn"$attrn"_rms"$rms".txt
+        mv feature_scores.txt "$result_path"/"$name"_feature_scores_mu"$mu"_alpha"$alpha"_shrink"$shrink"_itern"$iterN"_attrn"$attrn"_rms"$rms".txt
 
 done
 rm "$data_name"_temp.attr
