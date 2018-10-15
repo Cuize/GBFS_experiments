@@ -82,9 +82,9 @@ do
 		cat "$par_gbdt"|
 		while read gbdt_pars
 		do
-			shrink_gbdt="$( echo "$pars"|cut -f 1 -d" " )"
-			alpha_gbdt="$( echo "$pars"|cut -f 2 -d" "  )"
-			iterN_gbdt="$( echo "$pars"|cut -f 3 -d" " )"
+			shrink_gbdt="$( echo "$gbdt_pars"|cut -f 1 -d" " )"
+			alpha_gbdt="$( echo "$gbdt_pars"|cut -f 2 -d" "  )"
+			iterN_gbdt="$( echo "$gbdt_pars"|cut -f 3 -d" " )"
 			SECONDS=0
 			name=GBDTBTt
 			"$BT" -t "$converted_train_data" -v "$converted_test_data" -r "$all_attr" -a "$alpha_gbdt" -k -1
@@ -116,9 +116,9 @@ do
 	cat "$par_gbdt"|
 	while read gbdt_pars
 	do
-		shrink_gbdt="$( echo "$pars"|cut -f 1 -d" " )"
-		alpha_gbdt="$( echo "$pars"|cut -f 2 -d" "  )"
-		iterN_gbdt="$( echo "$pars"|cut -f 3 -d" " )"
+		shrink_gbdt="$( echo "$gbdt_pars"|cut -f 1 -d" " )"
+		alpha_gbdt="$( echo "$gbdt_pars"|cut -f 2 -d" "  )"
+		iterN_gbdt="$( echo "$gbdt_pars"|cut -f 3 -d" " )"
 		SECONDS=0
 		name=GBDTBTt
 		"$BT" -t "$converted_train_data" -v "$converted_test_data" -r "$all_attr" -a "$alpha_gbdt" -k -1
