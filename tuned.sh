@@ -71,13 +71,13 @@ do
 		"$GBFS_adapt1" -t "$converted_train_data" -v "$converted_test_data" -r "$all_attr" -mu "$mu" -sh "$shrink" -a "$alpha" -n "$iterN" -k -1
 		attrn="$(head -1 feature_scores.txt| cut -c  26-)"
 		rms="$(tail -1 boosting_rms.txt)"
-                echo "$name" "$mu" "$shrink" "$alpha" "$iterN" "$attrn" "$rms" "$SECONDS">> "$output"
-                mv preds.txt "$result_path"/"$name"_preds_mu"$mu"_alpha"$alpha"_shrink"$shrink"_itern"$iterN"_attrn"$attrn"_rms"$rms".txt
-                mv feature_scores.txt "$result_path"/"$name"_feature_scores_mu"$mu"_alpha"$alpha"_shrink"$shrink"_itern"$iterN"_attrn"$attrn"_rms"$rms".txt
-                name=GBFS_adapt2_model
-                "$GBFS_adapt2" -t "$converted_train_data" -v "$converted_test_data" -r "$all_attr" -mu "$mu" -sh "$shrink" -a "$alpha" -n "$iterN" -k -1
-                attrn="$(head -1 feature_scores.txt| cut -c  26-)"
-                rms="$(tail -1 boosting_rms.txt)"
+		echo "$name" "$mu" "$shrink" "$alpha" "$iterN" "$attrn" "$rms" "$SECONDS">> "$output"
+		mv preds.txt "$result_path"/"$name"_preds_mu"$mu"_alpha"$alpha"_shrink"$shrink"_itern"$iterN"_attrn"$attrn"_rms"$rms".txt
+		mv feature_scores.txt "$result_path"/"$name"_feature_scores_mu"$mu"_alpha"$alpha"_shrink"$shrink"_itern"$iterN"_attrn"$attrn"_rms"$rms".txt
+		name=GBFS_adapt2_model
+		"$GBFS_adapt2" -t "$converted_train_data" -v "$converted_test_data" -r "$all_attr" -mu "$mu" -sh "$shrink" -a "$alpha" -n "$iterN" -k -1
+		attrn="$(head -1 feature_scores.txt| cut -c  26-)"
+		rms="$(tail -1 boosting_rms.txt)"
 	else  # GBDTBTt
 		SECONDS=0
 		name=GBDTBTt
@@ -92,7 +92,7 @@ do
 	fi
 	echo "$name" "$mu" "$shrink" "$alpha" "$iterN" "$attrn" "$rms" "$SECONDS">> "$output"
 	mv preds.txt "$result_path"/"$name"_preds_mu"$mu"_alpha"$alpha"_shrink"$shrink"_itern"$iterN"_attrn"$attrn"_rms"$rms".txt
-        mv feature_scores.txt "$result_path"/"$name"_feature_scores_mu"$mu"_alpha"$alpha"_shrink"$shrink"_itern"$iterN"_attrn"$attrn"_rms"$rms".txt
+	mv feature_scores.txt "$result_path"/"$name"_feature_scores_mu"$mu"_alpha"$alpha"_shrink"$shrink"_itern"$iterN"_attrn"$attrn"_rms"$rms".txt
 
 done
 rm "$data_name"_temp.attr
