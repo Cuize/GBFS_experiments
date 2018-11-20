@@ -26,9 +26,9 @@ BT=/home/cuize/Desktop/experiment/TreeExtra/Bin/bt_train
 
 GBFS=/home/cuize/Desktop/experiment/TreeExtra/Bin/gbt_train
 
-GBFS_adapt1=/home/cuize/Desktop/experiment/TreeExtra_adaptive/Bin/gbt_train
+GBFS_adapt_r=/home/cuize/Desktop/experiment/TreeExtra_adaptive/Bin/gbt_train
 
-GBFS_adapt2=/home/cuize/Desktop/experiment/TreeExtra_adaptive2/Bin/gbt_train
+#GBFS_adapt2=/home/cuize/Desktop/experiment/TreeExtra_adaptive2/Bin/gbt_train
 
 
 ######## preprocess
@@ -68,17 +68,17 @@ do
 		attrn="$(head -1 feature_scores.txt| cut -c  26-)"
 		rms="$(tail -1 boosting_rms.txt)"
 	elif (( $(echo "$mu > 0.0" |bc -l) )); then # GBFS_adapt
+		#SECONDS=0
+		#name=GBFS_adapt1_model
+		#"$GBFS_adapt1" -t "$converted_train_data" -v "$converted_test_data" -r "$all_attr" -mu "$mu" -sh "$shrink" -a "$alpha" -n "$iterN" -k -1
+		#attrn="$(head -1 feature_scores.txt| cut -c  26-)"
+		#rms="$(tail -1 boosting_rms.txt)"
+		#echo "$name" "$mu" "$shrink" "$alpha" "$iterN" "$attrn" "$rms" "$SECONDS">> "$output"
+		#mv preds.txt "$result_path"/"$name"_preds_mu"$mu"_alpha"$alpha"_shrink"$shrink"_itern"$iterN"_attrn"$attrn"_rms"$rms".txt
+		#mv feature_scores.txt "$result_path"/"$name"_feature_scores_mu"$mu"_alpha"$alpha"_shrink"$shrink"_itern"$iterN"_attrn"$attrn"_rms"$rms".txt
 		SECONDS=0
-		name=GBFS_adapt1_model
-		"$GBFS_adapt1" -t "$converted_train_data" -v "$converted_test_data" -r "$all_attr" -mu "$mu" -sh "$shrink" -a "$alpha" -n "$iterN" -k -1
-		attrn="$(head -1 feature_scores.txt| cut -c  26-)"
-		rms="$(tail -1 boosting_rms.txt)"
-		echo "$name" "$mu" "$shrink" "$alpha" "$iterN" "$attrn" "$rms" "$SECONDS">> "$output"
-		mv preds.txt "$result_path"/"$name"_preds_mu"$mu"_alpha"$alpha"_shrink"$shrink"_itern"$iterN"_attrn"$attrn"_rms"$rms".txt
-		mv feature_scores.txt "$result_path"/"$name"_feature_scores_mu"$mu"_alpha"$alpha"_shrink"$shrink"_itern"$iterN"_attrn"$attrn"_rms"$rms".txt
-		SECONDS=0
-		name=GBFS_adapt2_model
-		"$GBFS_adapt2" -t "$converted_train_data" -v "$converted_test_data" -r "$all_attr" -mu "$mu" -sh "$shrink" -a "$alpha" -n "$iterN" -k -1
+		name=GBFS_adapt_r_model
+		"$GBFS_adapt_r" -t "$converted_train_data" -v "$converted_test_data" -r "$all_attr" -mu "$mu" -sh "$shrink" -a "$alpha" -n "$iterN" -k -1
 		attrn="$(head -1 feature_scores.txt| cut -c  26-)"
 		rms="$(tail -1 boosting_rms.txt)"
 	fi
