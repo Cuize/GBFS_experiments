@@ -1,31 +1,39 @@
 import pandas as pd
 import numpy as np
+from os import listdir
 import sys
-import csv
 def generate_unused(train,test,response_name,folder):
 	train=pd.read_csv(train,sep="\t")
 	train_names=list(train.columns.values)
+	file_names=listdir(folder)
+	if "allfeature.txt" in file_names:
+		allfeature=set(pd.read_csv(folder+"/allfeature.txt",header=None)[0])
+		allfeature=set(str(x) for x in allfeature)
+	else:
+		allfeature=None
 	unused=[]
 	for name in train_names:
 		if name==response_name:
 			continue
+		elif allfeature and name not in allfeature:
+			unused.append(name)
 		else:
-			unique=train[name].unique()
-			dtype=unique[0]
-			try:
-				dtype.isalnum()
+			if type(train[name][0])==str:
 				unused.append(name)
-			except:
+			else:
+				unique=train[name].unique()
 				if len(unique)==1:
 					unused.append(name)
-
 	txtfile1=folder+"/preprocess_unused.txt"
 	txtfile2=folder+"/trueY.txt"
-	pd.read_csv(test,sep="\t")[response_name].to_csv(txtfile2, index=False)
-	with open(txtfile1, "w") as output:
-		writer = csv.writer(output, lineterminator='\n',escapechar=' ',quoting=csv.QUOTE_NONE)
-		for val in unused:
-			writer.writerow([val])
+	txtfile3=folder+"/keyword.txt"
+	pd.DataFrame(unused).to_csv(txtfile1,header=None,index=None,sep="/")
+	test=pd.read_csv(test,sep="\t")
+	test[response_name].to_csv(txtfile2, index=False)
+	try:
+		test["keyword"].to_csv(txtfile3, index=False)
+	except:
+		print("not query-asin-like dataset,no keywords given")
 
 
 if __name__ == '__main__':
