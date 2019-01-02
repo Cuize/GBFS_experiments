@@ -1,0 +1,6 @@
+name mu shrinkage alpha iteration number_of_features s RMSE ROC time
+triggered 0.001 0.1 0.02 200 167 1 0.194314 0.987684 1255
+notTriggered 0.001 0.1 0.02 200 1172 max 0.18596 0.991748 2300
+triggered 0.001 0.1 0.02 200 169 20 0.199535 0.987828 1262
+notTriggered 0.001 0.1 0.02 200 1195 max 0.182587 0.992872 2339
+triggered 0.001 0.1 0.02 200 159 50 0.19284 0.98978 1321

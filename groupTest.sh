@@ -2,7 +2,7 @@
 ## test on groupTest and binary search idea (assume data has required format)
 ## input: tuned_GBFS_a1.txt(1) dataname(2) responseName(3) 
 ## output: preds.txt boosting_rmse.txt for different tuned parameters
-## order in tuned_GBFS_a.txt: mu shrink alpha iterN
+## order in tuned_GBFS_a.txt: mu shrink alpha iterN s
 
 #alias
 par1=$1
@@ -17,7 +17,7 @@ mkdir -p result/"$data_name"
 
 result_path=result/"$data_name"
 
-convert=/home/cuize/Desktop/experiment/ag_scripts/General/tsv_to_dta.sh
+convert=/u/c/u/cuize/GBFS/ag_scripts/General/tsv_to_dta.sh
 
 #BT=/home/cuize/Desktop/experiment/TreeExtra/Bin/bt_train
 
@@ -27,7 +27,7 @@ convert=/home/cuize/Desktop/experiment/ag_scripts/General/tsv_to_dta.sh
 
 #Adaptive_GBFS_adapt_r=/home/cuize/Desktop/experiment/TreeExtra_adaptive2/Bin/gbt_train
 
-groupTest=/home/cuize/Desktop/experiment/TreeExtraGroupTest/Bin/gbt_train
+groupTest=/u/c/u/cuize/GBFS/TreeExtra/Bin/gbt_train
 
 #mrr=/home/cuize/Desktop/experiment/ag_scripts/General/mrr
 ######## preprocess
@@ -50,7 +50,7 @@ all_attr=""$result_path"/$data_name"_train.attr
 ######### model training and prediction for different alpha,mu
 touch "$result_path"/groupTest.txt
 output="$result_path"/groupTest.txt
-echo name mu shrinkage alpha iteration number_of_features RMSE ROC time>> "$output"
+echo name mu shrinkage alpha iteration number_of_features s RMSE ROC time>> "$output"
 
 cat "$par1"|      #read parameters
 while read pars
@@ -59,6 +59,7 @@ do
 	shrink="$( echo "$pars"|cut -f 2 -d" " )"
 	alpha="$( echo "$pars"|cut -f 3 -d" "  )"
 	iterN="$( echo "$pars"|cut -f 4 -d" " )"
+	sIn="$( echo "$pars"|cut -f 5 -d" " )"
 #	if (( $(echo "$mu >= 1.0" |bc -l) )); then  #GBFS
 #		SECONDS=0
 #		name=GBFS_model
@@ -70,12 +71,12 @@ do
 #	elif (( $(echo "$mu > 0.0" |bc -l) )); then # GBFS_adapt
 		SECONDS=0
 		name=triggered
-		"$groupTest" -t "$converted_train_data" -v "$converted_test_data" -r "$all_attr" -mu "$mu" -sh "$shrink" -a "$alpha" -n "$iterN"  -k -1 -c roc -s 20
+		"$groupTest" -t "$converted_train_data" -v "$converted_test_data" -r "$all_attr" -mu "$mu" -sh "$shrink" -a "$alpha" -n "$iterN"  -k 10 -c roc -s "$sIn" 
 		attrn="$(head -1 feature_scores.txt| cut -c  26-)"
 		rms="$(tail -1 boosting_rms.txt)"
                 roc="$(tail -1 boosting_roc.txt)"
                 #mrr_v="$("$mrr" trueY.txt preds.txt groups.txt)"
-		echo "$name" "$mu" "$shrink" "$alpha" "$iterN" "$attrn" "$rms" "$roc"  "$SECONDS">> "$output"
+		echo "$name" "$mu" "$shrink" "$alpha" "$iterN" "$attrn" "$sIn"  "$rms" "$roc"  "$SECONDS">> "$output"
 		mv preds.txt "$result_path"/"$name"_preds_mu"$mu"_alpha"$alpha"_shrink"$shrink"_itern"$iterN"_attrn"$attrn"_rms"$rms".txt
 		mv feature_scores.txt "$result_path"/ "$name"_feature_scores_mu"$mu"_alpha"$alpha"_shrink"$shrink"_itern"$iterN"_attrn"$attrn"_rms"$rms".txt
                 mv time.txt "$result_path"/"$name"_time_mu"$mu"_alpha"$alpha"_shrink"$shrink"_itern"$iterN"_attrn"$attrn"_rms"$rms".txt
@@ -85,13 +86,13 @@ do
 
 		SECONDS=0
 		name=notTriggered
-		"$groupTest" -t "$converted_train_data" -v "$converted_test_data" -r "$all_attr" -mu "$mu" -sh "$shrink" -a "$alpha" -n "$iterN"  -k -1 -c roc -s 6000
+		"$groupTest" -t "$converted_train_data" -v "$converted_test_data" -r "$all_attr" -mu "$mu" -sh "$shrink" -a "$alpha" -n "$iterN"  -k 10 -c roc -s 6000
 		attrn="$(head -1 feature_scores.txt| cut -c  26-)"
 		rms="$(tail -1 boosting_rms.txt)"
                 roc="$(tail -1 boosting_roc.txt)"
  #               mrr_v="$("$mrr" trueY.txt preds.txt groups.txt)"
 #	fi
-	echo "$name" "$mu" "$shrink" "$alpha" "$iterN" "$attrn" "$rms" "$roc" "$SECONDS">> "$output"
+	echo "$name" "$mu" "$shrink" "$alpha" "$iterN" "$attrn" "max" "$rms" "$roc" "$SECONDS">> "$output"
 	mv preds.txt "$result_path"/"$name"_preds_mu"$mu"_alpha"$alpha"_shrink"$shrink"_itern"$iterN"_attrn"$attrn"_rms"$rms".txt
 	mv feature_scores.txt "$result_path"/"$name"_feature_scores_mu"$mu"_alpha"$alpha"_shrink"$shrink"_itern"$iterN"_attrn"$attrn"_rms"$rms".txt
         mv time.txt "$result_path"/"$name"_time_mu"$mu"_alpha"$alpha"_shrink"$shrink"_itern"$iterN"_attrn"$attrn"_rms"$rms".txt

@@ -1,7 +1,4 @@
-*.txt
 *.tsv
-*.dta
-*.attr
 data/
 result/
 *.out

@@ -19,7 +19,7 @@ mkdir -p result/"$data_name"
 
 result_path=result/"$data_name"
 
-convert=/home/cuize/Desktop/experiment/ag_scripts/General/tsv_to_dta.sh
+convert=../ag_scripts/General/tsv_to_dta.sh
 
 
 #BT=/home/cuize/Desktop/experiment/TreeExtra/Bin/bt_train
@@ -38,11 +38,12 @@ convert=/home/cuize/Desktop/experiment/ag_scripts/General/tsv_to_dta.sh
 #output result_path/preprocess_unused.txt , result_path/trueY.txt and result_path/keywords.txt
 python preprocess.py "$train_data_ext" "$test_data_ext" "$response_name" "$result_path"
 
+
 #converting format
 bash "$convert" "$train_data" "$response_name" "$result_path"/preprocess_unused.txt 
 bash "$convert" "$test_data" "$response_name" "$result_path"/preprocess_unused.txt
-bash "$convert" "$train_train_data" "$response_name" "$result_path"/preprocess_unused.txt
-bash "$convert" "$train_validate_data" "$response_name" "$result_path"/preprocess_unused.txt
+#bash "$convert" "$train_train_data" "$response_name" "$result_path"/preprocess_unused.txt
+#bash "$convert" "$train_validate_data" "$response_name" "$result_path"/preprocess_unused.txt
 rm "$test_data".attr
 rm "$train_train_data".attr
 rm "$train_validate_data".attr
