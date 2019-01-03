@@ -1,0 +1,252 @@
+
+-----
+gbt_train -t result/gisette/gisette_train.dta -v result/gisette/gisette_test.dta -r result/gisette/gisette_train.attr -mu 0.001 -sh 0.1 -a 0.02 -n 200 -k 10 -c roc -s 1 
+
+Reading the attribute file: "result/gisette/gisette_train.attr"
+5000 attributes
+4955 active attributes
+
+Reading the train set: "result/gisette/gisette_train.dta"
+6000 points in the train set, std. dev. of label values = 0.5
+
+Reading the validation set: "result/gisette/gisette_test.dta"
+1000 points in the validation set, std. dev. of label values = 0.5
+
+
+-----
+gbt_train -t result/gisette/gisette_train.dta -v result/gisette/gisette_test.dta -r result/gisette/gisette_train.attr -mu 0.001 -sh 0.1 -a 0.02 -n 200 -k 10 -c roc -s 6000 
+
+Reading the attribute file: "result/gisette/gisette_train.attr"
+5000 attributes
+4955 active attributes
+
+Reading the train set: "result/gisette/gisette_train.dta"
+6000 points in the train set, std. dev. of label values = 0.5
+
+Reading the validation set: "result/gisette/gisette_test.dta"
+1000 points in the validation set, std. dev. of label values = 0.5
+
+
+-----
+gbt_train -t result/gisette/gisette_train.dta -v result/gisette/gisette_test.dta -r result/gisette/gisette_train.attr -mu 0.001 -sh 0.1 -a 0.02 -n 200 -k 10 -c roc -s 20 
+
+Reading the attribute file: "result/gisette/gisette_train.attr"
+5000 attributes
+4955 active attributes
+
+Reading the train set: "result/gisette/gisette_train.dta"
+6000 points in the train set, std. dev. of label values = 0.5
+
+Reading the validation set: "result/gisette/gisette_test.dta"
+1000 points in the validation set, std. dev. of label values = 0.5
+
+
+-----
+gbt_train -t result/gisette/gisette_train.dta -v result/gisette/gisette_test.dta -r result/gisette/gisette_train.attr -mu 0.001 -sh 0.1 -a 0.02 -n 200 -k 10 -c roc -s 6000 
+
+Reading the attribute file: "result/gisette/gisette_train.attr"
+5000 attributes
+4955 active attributes
+
+Reading the train set: "result/gisette/gisette_train.dta"
+6000 points in the train set, std. dev. of label values = 0.5
+
+Reading the validation set: "result/gisette/gisette_test.dta"
+1000 points in the validation set, std. dev. of label values = 0.5
+
+
+-----
+gbt_train -t result/gisette/gisette_train.dta -v result/gisette/gisette_test.dta -r result/gisette/gisette_train.attr -mu 0.001 -sh 0.1 -a 0.02 -n 200 -k 10 -c roc -s 50 
+
+Reading the attribute file: "result/gisette/gisette_train.attr"
+5000 attributes
+4955 active attributes
+
+Reading the train set: "result/gisette/gisette_train.dta"
+6000 points in the train set, std. dev. of label values = 0.5
+
+Reading the validation set: "result/gisette/gisette_test.dta"
+1000 points in the validation set, std. dev. of label values = 0.5
+
+
+-----
+gbt_train -t result/gisette/gisette_train.dta -v result/gisette/gisette_test.dta -r result/gisette/gisette_train.attr -mu 0.001 -sh 0.1 -a 0.02 -n 200 -k 10 -c roc -s 6000 
+
+Reading the attribute file: "result/gisette/gisette_train.attr"
+5000 attributes
+4955 active attributes
+
+Reading the train set: "result/gisette/gisette_train.dta"
+6000 points in the train set, std. dev. of label values = 0.5
+
+Reading the validation set: "result/gisette/gisette_test.dta"
+1000 points in the validation set, std. dev. of label values = 0.5
+
+
+-----
+gbt_train -t result/gisette/gisette_train.dta -v result/gisette/gisette_test.dta -r result/gisette/gisette_train.attr -mu 0.001 -sh 0.1 -a 0.02 -n 200 -k 10 -c roc -s 100 
+
+Reading the attribute file: "result/gisette/gisette_train.attr"
+5000 attributes
+4955 active attributes
+
+Reading the train set: "result/gisette/gisette_train.dta"
+6000 points in the train set, std. dev. of label values = 0.5
+
+Reading the validation set: "result/gisette/gisette_test.dta"
+1000 points in the validation set, std. dev. of label values = 0.5
+
+
+-----
+gbt_train -t result/gisette/gisette_train.dta -v result/gisette/gisette_test.dta -r result/gisette/gisette_train.attr -mu 0.001 -sh 0.1 -a 0.02 -n 200 -k 10 -c roc -s 6000 
+
+Reading the attribute file: "result/gisette/gisette_train.attr"
+5000 attributes
+4955 active attributes
+
+Reading the train set: "result/gisette/gisette_train.dta"
+6000 points in the train set, std. dev. of label values = 0.5
+
+Reading the validation set: "result/gisette/gisette_test.dta"
+1000 points in the validation set, std. dev. of label values = 0.5
+
+
+-----
+gbt_train -t result/gisette/gisette_train.dta -v result/gisette/gisette_test.dta -r result/gisette/gisette_train.attr -mu 0.002 -sh 0.1 -a 0.02 -n 200 -k 10 -c roc -s 1 
+
+Reading the attribute file: "result/gisette/gisette_train.attr"
+5000 attributes
+4955 active attributes
+
+Reading the train set: "result/gisette/gisette_train.dta"
+6000 points in the train set, std. dev. of label values = 0.5
+
+Reading the validation set: "result/gisette/gisette_test.dta"
+1000 points in the validation set, std. dev. of label values = 0.5
+
+
+-----
+gbt_train -t result/gisette/gisette_train.dta -v result/gisette/gisette_test.dta -r result/gisette/gisette_train.attr -mu 0.002 -sh 0.1 -a 0.02 -n 200 -k 10 -c roc -s 6000 
+
+Reading the attribute file: "result/gisette/gisette_train.attr"
+5000 attributes
+4955 active attributes
+
+Reading the train set: "result/gisette/gisette_train.dta"
+6000 points in the train set, std. dev. of label values = 0.5
+
+Reading the validation set: "result/gisette/gisette_test.dta"
+1000 points in the validation set, std. dev. of label values = 0.5
+
+
+-----
+gbt_train -t result/gisette/gisette_train.dta -v result/gisette/gisette_test.dta -r result/gisette/gisette_train.attr -mu 0.002 -sh 0.1 -a 0.02 -n 200 -k 10 -c roc -s 20 
+
+Reading the attribute file: "result/gisette/gisette_train.attr"
+5000 attributes
+4955 active attributes
+
+Reading the train set: "result/gisette/gisette_train.dta"
+6000 points in the train set, std. dev. of label values = 0.5
+
+Reading the validation set: "result/gisette/gisette_test.dta"
+1000 points in the validation set, std. dev. of label values = 0.5
+
+
+-----
+gbt_train -t result/gisette/gisette_train.dta -v result/gisette/gisette_test.dta -r result/gisette/gisette_train.attr -mu 0.002 -sh 0.1 -a 0.02 -n 200 -k 10 -c roc -s 6000 
+
+Reading the attribute file: "result/gisette/gisette_train.attr"
+5000 attributes
+4955 active attributes
+
+Reading the train set: "result/gisette/gisette_train.dta"
+6000 points in the train set, std. dev. of label values = 0.5
+
+Reading the validation set: "result/gisette/gisette_test.dta"
+1000 points in the validation set, std. dev. of label values = 0.5
+
+
+-----
+gbt_train -t result/gisette/gisette_train.dta -v result/gisette/gisette_test.dta -r result/gisette/gisette_train.attr -mu 0.002 -sh 0.1 -a 0.02 -n 200 -k 10 -c roc -s 50 
+
+Reading the attribute file: "result/gisette/gisette_train.attr"
+5000 attributes
+4955 active attributes
+
+Reading the train set: "result/gisette/gisette_train.dta"
+6000 points in the train set, std. dev. of label values = 0.5
+
+Reading the validation set: "result/gisette/gisette_test.dta"
+1000 points in the validation set, std. dev. of label values = 0.5
+
+
+-----
+gbt_train -t result/gisette/gisette_train.dta -v result/gisette/gisette_test.dta -r result/gisette/gisette_train.attr -mu 0.002 -sh 0.1 -a 0.02 -n 200 -k 10 -c roc -s 6000 
+
+Reading the attribute file: "result/gisette/gisette_train.attr"
+5000 attributes
+4955 active attributes
+
+Reading the train set: "result/gisette/gisette_train.dta"
+6000 points in the train set, std. dev. of label values = 0.5
+
+Reading the validation set: "result/gisette/gisette_test.dta"
+1000 points in the validation set, std. dev. of label values = 0.5
+
+
+-----
+gbt_train -t result/gisette/gisette_train.dta -v result/gisette/gisette_test.dta -r result/gisette/gisette_train.attr -mu 0.002 -sh 0.1 -a 0.02 -n 200 -k 10 -c roc -s 100 
+
+Reading the attribute file: "result/gisette/gisette_train.attr"
+5000 attributes
+4955 active attributes
+
+Reading the train set: "result/gisette/gisette_train.dta"
+6000 points in the train set, std. dev. of label values = 0.5
+
+Reading the validation set: "result/gisette/gisette_test.dta"
+1000 points in the validation set, std. dev. of label values = 0.5
+
+
+-----
+gbt_train -t result/gisette/gisette_train.dta -v result/gisette/gisette_test.dta -r result/gisette/gisette_train.attr -mu 0.002 -sh 0.1 -a 0.02 -n 200 -k 10 -c roc -s 6000 
+
+Reading the attribute file: "result/gisette/gisette_train.attr"
+5000 attributes
+4955 active attributes
+
+Reading the train set: "result/gisette/gisette_train.dta"
+6000 points in the train set, std. dev. of label values = 0.5
+
+Reading the validation set: "result/gisette/gisette_test.dta"
+1000 points in the validation set, std. dev. of label values = 0.5
+
+
+-----
+gbt_train -t result/gisette/gisette_train.dta -v result/gisette/gisette_test.dta -r result/gisette/gisette_train.attr -mu 0.004 -sh 0.1 -a 0.02 -n 200 -k 10 -c roc -s 1 
+
+Reading the attribute file: "result/gisette/gisette_train.attr"
+5000 attributes
+4955 active attributes
+
+Reading the train set: "result/gisette/gisette_train.dta"
+6000 points in the train set, std. dev. of label values = 0.5
+
+Reading the validation set: "result/gisette/gisette_test.dta"
+1000 points in the validation set, std. dev. of label values = 0.5
+
+
+-----
+gbt_train -t result/gisette/gisette_train.dta -v result/gisette/gisette_test.dta -r result/gisette/gisette_train.attr -mu 0.004 -sh 0.1 -a 0.02 -n 200 -k 10 -c roc -s 6000 
+
+Reading the attribute file: "result/gisette/gisette_train.attr"
+5000 attributes
+4955 active attributes
+
+Reading the train set: "result/gisette/gisette_train.dta"
+6000 points in the train set, std. dev. of label values = 0.5
+
+Reading the validation set: "result/gisette/gisette_test.dta"
+1000 points in the validation set, std. dev. of label values = 0.5
+
